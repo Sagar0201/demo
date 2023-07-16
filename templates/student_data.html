@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+     <title>Hello, world!</title>
+</head>
+
+<body>
+
+
+     <h1>hello world</h1>
+
+     <h3>student data</h3>
+     {% for student in student_data %}
+          First Name - {{student.first_name}}
+          Last Name - {{student.last_name}} <br>
+     {% endfor %}
+
+
+     <h3>teacher data</h3>
+
+     {% for teacher in teacher_data %}
+          First Name - {{teacher.first_name}}
+          last Name - {{teacher.last_name}}
+          Age - {{teacher.age}}
+          Subject - {{teacher.subject}} <br>
+     {% endfor %}
+     
+
+</body>
+
+</html>
