@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+     <title>Hello, world!</title>
+</head>
+
+<body>
+
+     <h1> Marathi Teachers List </h1>
+
+     {% for teacher in marathi_teachers %}
+
+     
+     <ul>
+          <li>First Name -{{teacher.first_name}}</li>
+          <li>Last Name -{{teacher.last_name}}</li>
+          <li>Age - {{teacher.age}} </li>
+          <br>
+     </ul>
+
+     {% endfor %}
+
+     
+     <h1> Math Teachers List </h1>
+
+     {% for teacher in math_teachers %}
+
+     
+     <ul>
+          <li>First Name -{{teacher.first_name}}</li>
+          <li>Last Name -{{teacher.last_name}}</li>
+          <li>Age - {{teacher.age}} </li>
+          <br>
+     </ul>
+
+     {% endfor %}
+
+     
+
+s
+
+</body>
+
+</html>
