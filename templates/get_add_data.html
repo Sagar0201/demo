@@ -1,0 +1,53 @@
+<html>
+
+<head>
+     <title>get and add data</title>
+</head>
+
+<style>
+
+     .main-heading{
+          text-align: center;
+          padding: 20px 0 ;
+     }
+
+     .student-form{
+          /* border: 1px solid red; */
+          text-align: center;
+     }
+
+     .student-form input{
+          margin: 10px;
+          height: 40px;
+          width: 500px;
+     }
+     .student-form button{
+          height: 40px;
+     }
+
+
+</style>
+
+<body>
+
+     <h1 class="main-heading"> Student Entry Form</h1>
+
+     <!-- <form class="student-form" action="/opr/get-add-data/" method="get" > -->
+     <form class="student-form" action="{% url 'get_and_add_data' %}" method="post" >
+          {% csrf_token %}
+
+          <h3>Fill this Form to add Student</h3>
+
+          <input type="number" placeholder="Enter Roll Number" name="roll"><br>
+          <input type="text" placeholder="Enter First Name" name="first_name"><br>
+          <input type="text" placeholder="Enter Last Name" name="last_name"><br>
+          <input type="number" placeholder="Enter Age" name="age">
+
+          <button type="submit">Submit</button>
+
+     </form>
+
+
+</body>
+
+</html>

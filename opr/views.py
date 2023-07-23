@@ -54,7 +54,7 @@ def filter_data(request):
 
 ######################### add data in database ( Create ) #########################
 
-
+# direct add data
 def add_data(request):
      
      Student.objects.create(roll_number=5,first_name='ram',last_name='mario',age=23)
@@ -68,3 +68,31 @@ def add_data(request):
      return HttpResponse('data added')
 
 
+
+# get data from templates and then add into database
+
+def get_add_data(request):
+     
+     
+     if request.method== "POST":
+     
+
+          roll_no = request.POST.get('roll')
+          first_name = request.POST.get('first_name')
+          last_name = request.POST.get('last_name')
+          age = request.POST.get('age') 
+          Student.objects.create(roll_number=roll_no,first_name=first_name,last_name=last_name,age=age)
+          
+          return HttpResponse("data added")
+
+          
+     return render(request,'get_add_data.html')
+
+
+# Todays Task-
+
+# opr/student-add/ - add student into database
+# opr/student-details/ - show students list
+
+# opr/teacher-add/ - add teacher into database
+# opr/teacher-details/ - show teachers list
