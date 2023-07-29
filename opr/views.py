@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from django.http import HttpResponse, request
 
 # import models in views
@@ -75,15 +75,17 @@ def get_add_data(request):
      
      
      if request.method== "POST":
-     
-
+          
+          # print(request.POST)
+          
           roll_no = request.POST.get('roll')
           first_name = request.POST.get('first_name')
           last_name = request.POST.get('last_name')
           age = request.POST.get('age') 
           Student.objects.create(roll_number=roll_no,first_name=first_name,last_name=last_name,age=age)
           
-          return HttpResponse("data added")
+          # return HttpResponse("data added")
+          return redirect('about_us') # to go on different or same (page or route)
 
           
      return render(request,'get_add_data.html')
@@ -96,3 +98,17 @@ def get_add_data(request):
 
 # opr/teacher-add/ - add teacher into database
 # opr/teacher-details/ - show teachers list
+
+
+
+def about_us(request):
+     
+     a = Student.objects.all()
+     # print('student data',a)
+     
+     # return HttpResponse('this working')
+     return render(request,'about_us.html',{'students':a})
+
+
+
+

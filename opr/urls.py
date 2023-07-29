@@ -7,5 +7,6 @@ urlpatterns = [
      path("filter-data/",views.filter_data,name="filter_data"),
      path("add-data/",views.add_data,name="add_data"),
      path('get-add-data/',views.get_add_data,name="get_and_add_data"),
+     path('about-us/',views.about_us,name='about_us'),
 ]
 
