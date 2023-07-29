@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>Document</title>
+</head>
+
+<style>
+     .form_heading{
+          text-align: center;
+     }
+
+     .study_form{
+          border: 1px solid red;
+          padding: 30px;
+     }
+
+
+     .study_form input{
+          height: 30px;
+     }
+
+     .study_form label{
+          margin-right: 10px;
+     }
+     .study_form button{
+          width: 100px;
+          height: 50px;
+     }
+
+     .study_form div{
+          border: 1px solid green;
+          padding: 1rem;
+          margin: 1em;
+          display: inline;
+
+     }
+
+     table{
+          width: 100%;
+     }
+
+     table tbody td{
+          text-align: center;
+          padding: 10px;
+     }
+
+     
+
+</style>
+
+<body>
+     
+     <h1 class="form_heading">My Study Form</h1>
+
+     <form class="study_form" action="/opr/study/" method="post">
+          {% csrf_token %}
+
+          <div>
+               <label for="subject">Subject</label>
+               <input type="text" name="subject" id="subject">
+          </div>
+          
+
+          <div>
+               <label for="time">Study In Hours</label>
+               <input type="number" name="time" id="time">
+
+          </div>
+
+          <div class="checkbox">
+               <label for="status">Is Completed</label>
+               <input type="checkbox" name="is_complete" id="status" value="True">
+          </div>
+
+          
+          <button type="submit">Submit</button>
+
+
+     </form>
+
+
+
+     <h1 >Study Details</h1>
+
+     <table border="1px">
+
+          <thead>
+               <tr>
+                    <th>SR</th>
+                    <th>Date</th>
+                    <th>Subject</th>
+                    <th>Time</th>
+                    <th>Status</th>
+               </tr>
+          
+          </thead>
+
+
+          <tbody>
+
+               {% for detail in study_details %}
+
+               <tr>
+                    <td>{{forloop.counter}}</td>
+                    <td>{{ detail.date}}</td>
+                    <td>{{ detail.subject}}</td>
+                    <td>{{ detail.time}} Hours</td>
+                    
+
+                    {% if detail.is_complete %}
+                    <td>Completed</td>
+                    {% else %}
+                    <td>Incomplete</td>
+                    {% endif %}
+
+               </tr>
+
+               
+
+               {% endfor %}
+
+
+          </tbody>
+
+
+     </table>
+
+
+
+</body>
+</html>

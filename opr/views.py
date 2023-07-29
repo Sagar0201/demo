@@ -3,7 +3,7 @@ from django.http import HttpResponse, request
 
 # import models in views
 
-from . models import Student,Teacher
+from . models import *
 
 # Create your views here.
 
@@ -111,4 +111,35 @@ def about_us(request):
 
 
 
+
+def my_study(request):
+     
+     
+     if request.method == "POST":
+          print(request.POST)
+          
+          subject = request.POST['subject']
+          time = request.POST['time']
+          
+
+          try:
+               if request.POST['is_complete'] == "True":
+                    is_completed = True
+               
+               else:
+                    is_completed = False
+               
+          except:
+               is_completed= False
+               
+               
+          Study.objects.create(subject=subject,time=time,is_complete=is_completed)
+          
+          return redirect('my_study_data')
+     
+     else:
+          study_details= Study.objects.all()
+          print(study_details)
+     
+          return render(request,'my_study_form.html',{'study_details':study_details})
 
