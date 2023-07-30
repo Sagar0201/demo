@@ -21,6 +21,10 @@
           height: 30px;
      }
 
+     .study_form option{
+          display: inline;
+     }
+
      .study_form label{
           margin-right: 10px;
      }
@@ -54,18 +58,28 @@
      
      <h1 class="form_heading">My Study Form</h1>
 
-     <form class="study_form" action="/opr/study/" method="post">
+     <form class="study_form" action="{% url 'my_study_data' %}" method="post">
           {% csrf_token %}
 
           <div>
                <label for="subject">Subject</label>
-               <input type="text" name="subject" id="subject">
+               <!-- <input type="text" name="subject" id="subject"> -->
+
+
+               <select name="subject">
+
+                    {% for sub in subjects %}
+                         <option value="{{sub.id}}"> {{sub.name}}</option>
+                    {% endfor %}
+                    
+               </select>
+
           </div>
           
 
           <div>
                <label for="time">Study In Hours</label>
-               <input type="number" name="time" id="time">
+               <input type="number" name="time" id="time" step="any">
 
           </div>
 
@@ -106,7 +120,7 @@
                <tr>
                     <td>{{forloop.counter}}</td>
                     <td>{{ detail.date}}</td>
-                    <td>{{ detail.subject}}</td>
+                    <td>{{ detail.subject.name}}</td>
                     <td>{{ detail.time}} Hours</td>
                     
                     <td></td>
@@ -126,7 +140,7 @@
           </tbody>
 
 
-     </table>
+     </table> 
 
 
 

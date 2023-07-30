@@ -112,34 +112,76 @@ def about_us(request):
 
 
 
+# def my_study(request):
+     
+     
+#      if request.method == "POST":
+#           print(request.POST)
+          
+#           subject = request.POST['subject']
+#           time = request.POST['time']
+          
+
+#           try:
+#                if request.POST['is_complete'] == "True":
+#                     is_completed = True
+               
+#                else:
+#                     is_completed = False
+               
+#           except:
+#                is_completed= False
+               
+               
+#           Study.objects.create(subject=subject,time=time,is_complete=is_completed)
+          
+#           return redirect('my_study_data')
+     
+#      else:
+#           study_details= Study.objects.all()
+#           print(study_details)
+     
+#           return render(request,'my_study_form.html',{'study_details':study_details})
+
+
+
+# adding data into models with ForeignKey
 def my_study(request):
+     
+     # for sub in subjects:
+     #      print(sub.id , sub.name)
+     # Study.objects.create(subject_id=1,time=2.5,is_complete=True)
      
      
      if request.method == "POST":
+          
           print(request.POST)
           
           subject = request.POST['subject']
           time = request.POST['time']
           
-
+          
           try:
                if request.POST['is_complete'] == "True":
-                    is_completed = True
-               
+                    is_complete = True
                else:
-                    is_completed = False
-               
+                    is_complete= False
+                    
           except:
-               is_completed= False
+               is_complete = False
                
                
-          Study.objects.create(subject=subject,time=time,is_complete=is_completed)
+          Study.objects.create(subject_id= subject,time=time,is_complete=is_complete )
           
           return redirect('my_study_data')
      
      else:
+          
+          subjects= Subject.objects.all()
           study_details= Study.objects.all()
           print(study_details)
+          
+          return render(request,'my_study_form.html',{'subjects':subjects,'study_details':study_details})
      
-          return render(request,'my_study_form.html',{'study_details':study_details})
+
 
