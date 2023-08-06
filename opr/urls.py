@@ -9,5 +9,6 @@ urlpatterns = [
      path('get-add-data/',views.get_add_data,name="get_and_add_data"),
      path('about-us/',views.about_us,name='about_us'),
      path('study/',views.my_study,name='my_study_data'),
+     path('signup/',views.signup,name='create_account'),
 ]
 

@@ -1,5 +1,6 @@
 from django.shortcuts import render,redirect
 from django.http import HttpResponse, request
+from django.contrib.auth.models import User
 
 # import models in views
 
@@ -145,6 +146,7 @@ def about_us(request):
 
 
 
+
 # adding data into models with ForeignKey
 def my_study(request):
      
@@ -152,36 +154,55 @@ def my_study(request):
      #      print(sub.id , sub.name)
      # Study.objects.create(subject_id=1,time=2.5,is_complete=True)
      
-     
      if request.method == "POST":
-          
-          print(request.POST)
-          
+     
           subject = request.POST['subject']
           time = request.POST['time']
-          
           
           try:
                if request.POST['is_complete'] == "True":
                     is_complete = True
                else:
-                    is_complete= False
-                    
+                    is_complete= False  
           except:
                is_complete = False
-               
                
           Study.objects.create(subject_id= subject,time=time,is_complete=is_complete )
           
           return redirect('my_study_data')
      
      else:
-          
           subjects= Subject.objects.all()
           study_details= Study.objects.all()
-          print(study_details)
-          
           return render(request,'my_study_form.html',{'subjects':subjects,'study_details':study_details})
      
 
 
+
+
+def signup(request):
+     
+     # return HttpResponse('this is working fine')
+     
+     if request.method == "POST":
+          
+          # print(request.POST)
+          
+          username  =   request.POST["username"]
+          first_name = request.POST['first_name']
+          last_name = request.POST['last_name']
+          email = request.POST['email']
+          password = request.POST['password']
+          
+          mobile_number = request.POST['mobile_number']
+          age = request.POST['age']
+          
+          user_data = User.objects.create(username=username,first_name=first_name,last_name=last_name,email=email,password=password)
+          print(user_data,user_data.username ,user_data.id)
+          
+          UserDetail.objects.create(user_id = user_data.id,mobile_number=mobile_number,age=age)
+          
+     
+          return HttpResponse('account created')
+
+     return render(request,'signup.html')
