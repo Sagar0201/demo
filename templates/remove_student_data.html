@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>Document</title>
+</head>
+
+<style>
+
+     table{
+          width: 100%;
+     }
+
+     th,td{
+          padding: 10px 20px;
+     }
+
+</style>
+<body>
+     <h1 style="text-align:center">remove student data</h1>
+
+     <table border="1px">
+
+          <thead>
+               <tr>
+                    <th>Roll Number</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Age</th>
+                    <th>Action</th>
+               </tr>
+          </thead>
+
+
+          <tbody>
+
+               {% for student in student_data %}
+
+               <tr>
+
+                    <td>{{student.roll_number}}</td>
+                    <td>{{student.first_name}}</td>
+                    <td>{{student.last_name}}</td>
+                    <td>{{student.age}}</td>
+                    <td>
+                         <form action="{% url 'remove_student_data' %}"  method="post">
+                              {% csrf_token %}
+                              <input type="hidden" name="id" value="{{student.id}}">
+                              <button type="submit"> Delete </button>
+                         </form>
+                    </td>
+
+               </tr>
+
+               {% endfor %}
+               
+
+
+          </tbody>
+
+
+     </table>
+
+
+
+
+</body>
+</html>

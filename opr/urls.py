@@ -10,5 +10,12 @@ urlpatterns = [
      path('about-us/',views.about_us,name='about_us'),
      path('study/',views.my_study,name='my_study_data'),
      path('signup/',views.signup,name='create_account'),
+     
+     path('remove-student',views.remove_student_data, name='remove_student_data'),
+     
+     
+     path('student-all-data/',views.student_all_data , name="student_all_data"),
+     
+     path('delete-student/<int:id>/',views.delete_student , name="delete_student"),
 ]
 

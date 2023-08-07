@@ -202,7 +202,42 @@ def signup(request):
           
           UserDetail.objects.create(user_id = user_data.id,mobile_number=mobile_number,age=age)
           
-     
           return HttpResponse('account created')
 
      return render(request,'signup.html')
+
+
+def remove_student_data(request):
+     
+     student_data = Student.objects.all()
+     
+     if request.method == "POST":
+          
+          id = request.POST.get('id')
+          
+          try:
+               student = Student.objects.get(id=id)
+               student.delete()
+               return HttpResponse(f'data with id {id} was deleted')
+               
+          except:
+               return HttpResponse(f"data with id {id} not found")
+     
+     return render(request,'remove_student_data.html',{'student_data': student_data})
+
+
+
+def student_all_data(request):
+     students = Student.objects.all()
+     return render(request,'student_all_data.html',{'student_data':students})
+
+
+def delete_student(request,id):
+     
+     try:
+          student = Student.objects.get(id=id)
+          student.delete()
+          return HttpResponse(f'data delete with id {id}')
+     
+     except:
+          return HttpResponse(f'data not found with id {id}')
