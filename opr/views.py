@@ -222,7 +222,7 @@ def remove_student_data(request):
                
           except:
                return HttpResponse(f"data with id {id} not found")
-     
+
      return render(request,'remove_student_data.html',{'student_data': student_data})
 
 
@@ -241,3 +241,27 @@ def delete_student(request,id):
      
      except:
           return HttpResponse(f'data not found with id {id}')
+     
+
+
+
+def teacher_data(request):
+     teachers  = Teacher.objects.all()
+     return render(request,'teacher_data.html',{'teachers':teachers})
+
+def teacher_data_delete(request,id):
+     
+     try :
+          teacher =Teacher.objects.get(id=id)
+          teacher.delete()
+          return HttpResponse(f"data delete with id {id}")
+     except:
+          return HttpResponse(f"data not found with id {id}")
+     
+     
+def teacher_single_data(request,id):
+     try:
+          teacher = Teacher.objects.get(id=id)
+          return render(request,"teacher_single_data.html",{"teacher":teacher})
+     except:
+          return HttpResponse("data not found")

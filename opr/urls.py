@@ -17,5 +17,10 @@ urlpatterns = [
      path('student-all-data/',views.student_all_data , name="student_all_data"),
      
      path('delete-student/<int:id>/',views.delete_student , name="delete_student"),
+     
+     
+     path('teacher-data/',views.teacher_data,name="teacher_data"),
+     path('teacher-data-delete/<int:id>/',views.teacher_data_delete,name="teacher_data_delete"),
+     path('teacher-data-show/<int:id>/',views.teacher_single_data , name="teacher_single_data")
 ]
 
