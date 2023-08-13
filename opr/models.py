@@ -61,7 +61,7 @@ class Study(models.Model):
      subject = models.ForeignKey(Subject,on_delete = models.CASCADE,null=True,blank=True) # connect with Subject Model with oneToMany filed
      time = models.DecimalField(max_digits=5,decimal_places=2)
      is_complete = models.BooleanField(default=True)
-     
+          
      
      def __str__(self):
           return f'{self.subject}  - {self.date}'
@@ -84,3 +84,13 @@ class UserDetail(models.Model):
           return f'{self.mobile_number}  {self.age}'
      
      
+
+# Task 
+
+# create book project 
+# create a book model - fields(6) - book name , book author , no of pages, publish date, author email id,price
+# page 1 - All book data in table( sr , book name ,price) , action (view, delete, update)
+# page 2 - Add Book
+# page 3 - show all details of particular book 
+# page 4 - update particular book details 
+

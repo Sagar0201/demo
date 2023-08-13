@@ -279,7 +279,6 @@ def teacher_single_data(request,id):
 
 def teachers_data_list(request):
      
-     
      teachers = Teacher.objects.all()
      return render(request,'update_data/teachers_data_list.html',{'teachers':teachers})
 
