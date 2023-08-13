@@ -21,6 +21,13 @@ urlpatterns = [
      
      path('teacher-data/',views.teacher_data,name="teacher_data"),
      path('teacher-data-delete/<int:id>/',views.teacher_data_delete,name="teacher_data_delete"),
-     path('teacher-data-show/<int:id>/',views.teacher_single_data , name="teacher_single_data")
+     path('teacher-data-show/<int:id>/',views.teacher_single_data , name="teacher_single_data"),
+     
+     
+     
+     # update the data
+     
+     path('teachers-data-list/',views.teachers_data_list, name="teachers_data_list"),
+     path('teachers-data-update/<int:id>',views.update_teacher_data,name="update_teacher_data"),
 ]
 

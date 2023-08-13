@@ -265,3 +265,61 @@ def teacher_single_data(request,id):
           return render(request,"teacher_single_data.html",{"teacher":teacher})
      except:
           return HttpResponse("data not found")
+     
+
+
+# Update the data
+
+# step 1 - show all data to user
+# step 2- get the id of the particular row which is clicked by user
+# step 3 - find the data in database table with particular id 
+# step 4 - send data to fond end and show this data in input box in form
+# step 5 - if user submit the form update this data in database
+
+
+def teachers_data_list(request):
+     
+     
+     teachers = Teacher.objects.all()
+     return render(request,'update_data/teachers_data_list.html',{'teachers':teachers})
+
+
+
+def update_teacher_data(request,id):
+     
+     # print(request.method)
+     
+     if request.method== "POST":
+          first_name   = request.POST['first_name']
+          last_name = request.POST['last_name']
+          subject = request.POST['subject']
+          age = request.POST['age']
+          
+          try:
+               teacher = Teacher.objects.get(id= id)
+               # print('data before update')
+               # print(teacher.first_name,teacher.last_name,teacher.subject,teacher.age)
+               
+               teacher.first_name = first_name
+               teacher.last_name = last_name
+               teacher.subject = subject
+               teacher.age = age
+               teacher.save()
+               
+               
+               # print('data after update')
+               # print(teacher.first_name,teacher.last_name,teacher.subject,teacher.age)
+               return redirect('teachers_data_list')
+               
+          except:
+               return HttpResponse('data not update')
+          
+     else:
+          try:
+               teacher = Teacher.objects.get(id=id)
+               return render(request,'update_data/update_teacher_data.html',{'teacher':teacher})
+          
+          except:
+               return HttpResponse('data not found')
+          
+          

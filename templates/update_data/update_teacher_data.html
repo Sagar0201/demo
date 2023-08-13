@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>Document</title>
+</head>
+
+<style>
+     h1{
+          text-align: center;
+          padding: 20px;
+     }
+
+     form{
+          display: flex;
+          flex-direction:column;
+          justify-content: center;
+          align-items: center;
+     }
+
+     input{
+          margin: 5px 0;
+          height: 30px;
+          width: 500px;
+     }
+     button{
+          width: 150px;
+          height: 40px;
+
+     }
+</style>
+<body>
+     <h1>update teacher data</h1>
+
+
+     <form action="/opr/teachers-data-update/{{teacher.id}}" method="post">
+          {% csrf_token %}
+
+          <input type="text" name="first_name" placeholder="Enter Your First Name" value="{{teacher.first_name}}"><br>
+          <input type="text" name="last_name" placeholder="Enter Your Last Name" value="{{teacher.last_name}}"> <br>
+          <input type="text" name="subject" placeholder="Enter Subject" value="{{teacher.subject}}"><br>
+          <input type="number" name="age" placeholder="Enter your age" step="any" value="{{teacher.age}}"><br>
+
+          <button type="submit">Update Data</button>
+
+     </form>
+
+
+
+</body>
+</html>

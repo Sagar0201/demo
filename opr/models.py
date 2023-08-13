@@ -83,3 +83,4 @@ class UserDetail(models.Model):
      def __str__(self):
           return f'{self.mobile_number}  {self.age}'
      
+     
